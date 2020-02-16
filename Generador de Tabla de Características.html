@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generador de Tabla de Características</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="main()">
+	<center><table id="table1" border="1px">
+	<tr>
+	<th>Fuerza:</th>
+	<th>Resistencia:</th>
+	<th>Agilidad:</th>
+	<th>Velocidad:</th>
+	<th>Sigilo:</th>
+	<th>Precisión:</th>
+	<th>Instinto:</th>
+	<th>Destreza:</th>
+	</tr>
+</table>
+	<textarea id="text" rows="20" disabled></textarea></center>
+
+
+	<script type="text/javascript">
+		var cars = [0, 0, 0, 0, 0, 0, 0, 0];
+		
+		var puntos = 80;
+		var flagPuntos = 0;
+		var flagText = 0;
+		var pxl = 	 [10, 10, 12, 15, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]; //puntos otorgados por cada franja de lv
+		var pxr = 	 [10, 20, 30 ,40 , 50 , 60, 80, 100, 125, 150, 175, 200, 250, 300, 350, 400, 500, 750, 1250]; //costes de cada rango (0 al 20)
+		var tramos = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 151]; //tramos(151 equivale al tramo 150)
+		var atributos = ["Fuerza", "Resistencia", "Agilidad", "Velocidad", "Sigilo", "Precisión", "Instinto S.", "Destreza"];
+		
+		function calcPuntos(){
+			var lvActual = prompt("Dime un numero");
+			
+			for (var lv = 2; lv <= lvActual; lv++){
+				for (var i = 0; i < 16 ; i++) {
+					if(lv < tramos[i]){
+						puntos += pxl[i];
+						break;
+					}
+				}
+			}
+			
+			flagPuntos = 1;
+		}
+		
+		function add(idCar){
+			alert("Tienes " + puntos  + " consumes " + pxr[cars[idCar]]);
+			if (puntos >= pxr[cars[idCar]]){
+				cars[idCar] += 1;
+				puntos -= pxr[cars[idCar]-1];
+			}
+			main();
+		}
+				
+		function main(){
+			
+			var table = document.getElementById("table1");
+			var button = document.getElementById("secretButton");
+			
+			if(flagPuntos == 0){
+				calcPuntos(); //si los puntos no estan calculados que lo haga solo una vez
+			}
+			alert("Puntos restantes " + puntos);
+
+			var row1 = table.insertRow(-1);
+		
+			var car1R = row1.insertCell(0);
+			var car2R = row1.insertCell(1);
+			var car3R = row1.insertCell(2);
+			var car4R = row1.insertCell(3);
+			var car5R = row1.insertCell(4);
+			var car6R = row1.insertCell(5);
+			var car7R = row1.insertCell(6);
+			var car8R = row1.insertCell(7);
+							
+			var car1Button = button.cloneNode(true);
+			var car2Button = button.cloneNode(true);
+			var car3Button = button.cloneNode(true);
+			var car4Button = button.cloneNode(true);
+			var car5Button = button.cloneNode(true);
+			var car6Button = button.cloneNode(true);
+			var car7Button = button.cloneNode(true);
+			var car8Button = button.cloneNode(true);
+									
+			car1Button.addEventListener('click', function(){
+				add(0);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			car2Button.addEventListener('click', function(){
+				add(1);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			car3Button.addEventListener('click', function(){
+				add(2);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			car4Button.addEventListener('click', function(){
+				add(3);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			car5Button.addEventListener('click', function(){
+				add(4);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			car6Button.addEventListener('click', function(){
+				add(5);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			car7Button.addEventListener('click', function(){
+				add(6);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			car8Button.addEventListener('click', function(){
+				add(7);
+				car1R.innerHTML = cars[0]-1;
+				car2R.innerHTML = cars[1]-1;
+				car3R.innerHTML = cars[2]-1;
+				car4R.innerHTML = cars[3]-1;
+				car5R.innerHTML = cars[4]-1;
+				car6R.innerHTML = cars[5]-1;
+				car7R.innerHTML = cars[6]-1;
+				car8R.innerHTML = cars[7]-1;	
+			}, false);
+			
+			if (puntos >= pxr[cars[0]]){
+				car1R.appendChild(car1Button);
+			}
+			
+			if (puntos >= pxr[cars[1]]){
+				car2R.appendChild(car2Button);
+			}
+			
+			if (puntos >= pxr[cars[2]]){
+				car3R.appendChild(car3Button);
+			}
+			
+			if (puntos >= pxr[cars[3]]){
+				car4R.appendChild(car4Button);
+			}
+			
+			if (puntos >= pxr[cars[4]]){
+				car5R.appendChild(car5Button);
+			}
+			
+			if (puntos >= pxr[cars[5]]){
+				car6R.appendChild(car6Button);
+			}
+			
+			if (puntos >= pxr[cars[6]]){
+				car7R.appendChild(car7Button);
+			}
+			if (puntos >= pxr[cars[7]]){
+				car8R.appendChild(car8Button);
+			}
+			
+			var textArea = document.getElementById("text");
+			var aux =  [cars[0]-1, cars[1]-1, cars[2]-1, cars[3]-1, cars[4]-1, cars[5]-1, cars[6]-1, cars[7]-1]
+			textArea.value = "[b]Fuerza:[/b] " + aux[0] + "\n[b]Resistencia:[/b] " + aux[1] +
+							"\n[b]Agilidad:[/b] " + aux[2] +"\n[b]Velocidad:[/b] " + aux[3] +
+							"\n[b]Sigilo:[/b] " + aux[4] + "\n[b]Precisión:[/b] " + aux[5] +
+							"\n[b]Instinto:[/b] " + aux[6] + "\n[b]Destreza:[/b] " + aux[7];
+			
+		}
+
+		function remove(button){
+			button.parentNode.removeChild(button);
+		}
+	</script>
+</body>
+	<div hidden="true"><button id="secretButton">+1</button></div>
+</html>
